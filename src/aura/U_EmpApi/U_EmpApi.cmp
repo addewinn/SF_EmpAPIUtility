@@ -1,0 +1,35 @@
+<aura:component implements="flexiPage:availableForAllPageTypes" access="Global">
+	<aura:attribute name="channel" type="String" default="/event/HttpResponse__e" description="The platform event or push topic channel to listen to"/>
+	<aura:attribute name="displayName" type="String" default="HTTP Responses" description="The friendly name to display when the utility bar is expanded" />
+	<aura:attribute name="subscribe" type="Boolean" default="false" />
+	<aura:attribute name="subscription" type="Map" />
+	<aura:attribute name="message" type="Object" default="{}" access="Public" description="the message payload from the channel"/>
+	<aura:attribute name="auraId" type="String" default="denaliListener" access="global" description="The Aura:Id attribute from the parent component where subscription events are received"/>
+	<aura:method name="subscribeToChannel" action="{!c.subscribe}" access="public" description="Method to subscribe to channel">
+		<aura:attribute name="channelToSubscribe" type="String" default="{!v.channel}" description="The channel parameter to provide the channel to listen to"/>
+		<aura:attribute name="subscribed" type="Boolean" default="{!v.subscribe}" />
+	</aura:method>
+	<aura:method name="unsubscribeFromChannel" action="{!c.unsubscribe}" access="public" description="Method to unsubscribe from channel" />
+	<lightning:empApi aura:id="denaliListenerApi" />
+	<aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+	<!--
+    	<div class="slds-p-around_small slds-border_bottom slds-theme-shade">
+            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                <div>
+                    <span class="{!! v.subscribe  ? 'slds-badge slds-theme_warning' : 'slds-badge slds-theme_success'}">
+                        {!! v.subscribe ? 'Listen for ' + v.displayName : 'Listening for ' + v.displayName}
+                    </span>
+                </div>
+                <div class="slds-hide">
+                	<lightning:input aura:id="channel" label="channel" name="channel" type="text" value="{!v.channel}"/>
+                </div>
+            	<div class="slds-p-left_small">
+                    <lightning:buttonIcon onclick="{!c.subscribe}" iconName="utility:listen" title="Subscribe" alternativeText="Subscribe" variant="border-filled" />
+                    <lightning:buttonIcon disabled="{!empty(v.subscription)}" onclick="{! c.unsubscribe }" iconName="utility:close" title="Unsubscribe" alternativeText="Unsubscribe" variant="border-filled"/>
+                </div>
+            </div>
+        </div>
+    -->
+    
+</aura:component>

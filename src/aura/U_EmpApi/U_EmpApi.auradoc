@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Documentation</aura:description>
+	<aura:example name="U_EmpApi" ref="c:U_EmpApi" label="Denali Listener Utility">
+		A utility component for managing subscriptions to the Emp API.  Contains aura methods for subscribing and unsubscribing to a channel.  Parent components should contain binded attributes for communicating the message payload back to the parent component.
+	</aura:example>
+</aura:documentation>

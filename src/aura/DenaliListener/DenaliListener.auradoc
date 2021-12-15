@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description><p>Component leveraging EMP API to listen for callouts and responses with Denali</p></aura:description>
+	<aura:example name="DenaliListener" ref="c:DenaliListener" label="Denali Listener">
+		Component leveraging EMP API to listen for callouts and responses with Denali
+	</aura:example>
+</aura:documentation>

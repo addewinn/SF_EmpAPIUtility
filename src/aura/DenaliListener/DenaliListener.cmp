@@ -1,0 +1,31 @@
+<aura:component implements="flexiPage:availableForAllPageTypes" access="Global">
+	<aura:attribute name="channel" type="String" default="/event/HttpResponse__e" access="public" description="The channel to submit to the EMP API Utility component"/>
+	<aura:attribute name="subscribe" type="Boolean" default="false" access="public"/>
+	<aura:attribute name="subscription" type="Map" access="public"/>
+    <aura:attribute name="message" type="Object" default="{}" access="public"/>
+    <aura:attribute name="empId" type="String" default="denaliListener" access="global" description="The Id for the EMP API component" />
+    <aura:attribute name="displayName" type="String" default="HTTP Responses" description="The friendly name to display when the utility bar is expanded" />
+	<aura:registerEvent name="toastEvent" type="force:showToast" />
+	<lightning:utilityBarAPI aura:id="denaliListenerUtil" />
+	<aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="change" value="{!v.message}" action="{!c.fireMessage}"/>
+
+	    <c:U_EmpApi channel="{!v.channel}" subscribe="{!v.subscribe}" message="{!v.message}" aura:id="{!v.empId}" auraId="{!v.empId}" displayName="{!v.displayName}"/>
+    	<div class="slds-p-around_small slds-border_bottom slds-theme-shade">
+            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                <div>
+                    <span class="{!! v.subscribe  ? 'slds-badge slds-theme_warning' : 'slds-badge slds-theme_success'}">
+                        {!! v.subscribe ? 'Listen for HTTP Responses' : 'Listening for HTTP Responses'}
+                    </span>
+                </div>
+                <div class="slds-hide">
+                	<lightning:input aura:id="channel" label="channel" name="channel" type="text" value="{!v.channel}"/>
+                </div>
+            	<div class="slds-p-left_small">
+                    <lightning:buttonIcon onclick="{!c.subscribe}" iconName="utility:listen" title="Subscribe" alternativeText="Subscribe" variant="border-filled" />
+                    <lightning:buttonIcon onclick="{! c.unsubscribe }" iconName="utility:close" title="Unsubscribe" alternativeText="Unsubscribe" variant="border-filled"/>
+                </div>
+            </div>
+        </div>
+    
+</aura:component>
